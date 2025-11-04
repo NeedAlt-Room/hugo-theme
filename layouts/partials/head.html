@@ -120,7 +120,7 @@
   {{- printf `<link rel=%q type=%q href=%q title=%q>` .Rel .MediaType.Type .Permalink site.Title | safeHTML -}}
 {{- end -}}
 <!-- favicon use default -->
-<link rel="shortcut icon" href="{{ "favicon.ico" | relURL }}">
+<link rel="shortcut icon" href="{{ "favicon.png" | relURL }}">
 {{- partial "helpers/scss.html" (dict "source" "css/main.scss" "temp" "main.scss" "target" "css/main.css" "ctx" .) -}}
 <!-- photo-swipe -->
 {{- partial "helpers/asyncCss.html" (dict "raw" $css.photoswipe "src" (index (partial "helpers/vendorCdn.html" (dict "item" $css.photoswipe "ctx" $site)) 0) "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $css.photoswipe)) 0)) -}}
