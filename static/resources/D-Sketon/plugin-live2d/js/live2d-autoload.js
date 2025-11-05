@@ -1,4 +1,13 @@
 let live2d = new Live2d();
+
+function isMobile() {
+    var userAgent = navigator.userAgent || window.opera;
+
+    if (/android/i.test(userAgent) || /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        return true;
+    }
+}
+
 // TODO 多语言化
 function Live2d() {
   /**
@@ -34,8 +43,18 @@ function Live2d() {
      */
     init(path, config = {}) {
       // 当前页面宽度大于等于 768 才进行加载
-      if (screen.width >= 768) {
+      if (isMobile()) {
         Promise.all([
+          util.loadExternalResource(path + "css/live2d-mobile.css", "css"),
+          util.loadExternalResource(path + "lib/live2d/live2d.min.js", "js"),
+        ]).then(() => {
+          this.#path = path;
+          this.defaultConfig.tipsPath = path + "live2d-tips.json";
+          this.#config = { ...this.defaultConfig, ...config };
+          this.#doInit();
+        });
+    } else {
+      Promise.all([
           util.loadExternalResource(path + "css/live2d.css", "css"),
           util.loadExternalResource(path + "lib/live2d/live2d.min.js", "js"),
         ]).then(() => {
