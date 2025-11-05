@@ -1,11 +1,8 @@
 let live2d = new Live2d();
 
 function isMobile() {
-    var userAgent = navigator.userAgent || window.opera;
-
-    if (/android/i.test(userAgent) || /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        return true;
-    }
+  const ua = navigator.userAgent.toLowerCase();
+  return /android|iphone|ipad|ipod|windows phone/i.test(ua);
 }
 
 // TODO 多语言化
