@@ -24,7 +24,14 @@ function loadExternalResource(url, type) {
 	});
 }
 
-// 加载 waifu.css live2d.min.js waifu-tips.js
+//判断移动端用户方法
+function isMobile() {
+    var userAgent = navigator.userAgent || window.opera;
+
+    if (/android/i.test(userAgent) || /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        return true;
+    }
+}
 // 加载 waifu.css live2d.min.js waifu-tips.js
 if (isMobile()) {
 	//移动端用户
@@ -55,7 +62,7 @@ if (isMobile()) {
 			tools: ["hitokoto", "asteroids", "switch-model", "switch-texture", "photo", "info", "quit"]
 		});
 	});
-}  
+}   
 
 console.log(`
   く__,.ヘヽ.        /  ,ー､ 〉
